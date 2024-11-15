@@ -1,1 +1,38 @@
-[{},{}]
+{
+  "children": [
+    {
+      "toys": []
+    }
+  ],
+  "toys": [
+    {
+      "id": "1",
+      "name": "Nintendo Switch"
+    },
+    {
+      "id": "2",
+      "name": "Trains"
+    },
+    {
+      "id": "1",
+      "name": "Barbie"
+    },
+    {
+      "id": "1",
+      "name": "Teddy Bear"
+    },
+    {
+      "id": "49bc",
+      "title": "johan",
+      "goodness": "80",
+      "location": "scherpenheuvel",
+      "timestamp": 1731678406904
+    },
+    {
+      "id": "f8a6",
+      "title": "killian",
+      "goodness": "1",
+      "location": "lommel"
+    }
+  ]
+}
