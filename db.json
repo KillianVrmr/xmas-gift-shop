@@ -2,6 +2,18 @@
   "children": [
     {
       "toys": []
+    },
+    {
+      "id": "c247",
+      "title": "marie",
+      "goodness": "88",
+      "location": "host"
+    },
+    {
+      "id": "9c87",
+      "name": "dirk",
+      "goodness": "2",
+      "location": "genk"
     }
   ],
   "toys": [
@@ -20,19 +32,6 @@
     {
       "id": "1",
       "name": "Teddy Bear"
-    },
-    {
-      "id": "49bc",
-      "title": "johan",
-      "goodness": "80",
-      "location": "scherpenheuvel",
-      "timestamp": 1731678406904
-    },
-    {
-      "id": "f8a6",
-      "title": "killian",
-      "goodness": "1",
-      "location": "lommel"
     }
   ]
 }

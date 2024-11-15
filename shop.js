@@ -1,9 +1,9 @@
-const url = 'http://localhost:3000/toys';
+const url = 'http://localhost:3000/children';
 
 // Add new post
 document.getElementById('addChildButton').addEventListener('click', () => {
     const newPost = {
-        title: document.getElementById('childName').value,
+        name: document.getElementById('childName').value,
         goodness: document.getElementById('childGoodScore').value,
         location: document.getElementById('childCity').value
     };
