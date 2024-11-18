@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Christmas</title>
+</head>
+<body>
+
+<main>
+    <h1>Santa's Christmas Shop</h1>
+    <!-- Upper bar -->
+    <div class="input-group">
+        <input type="text" id="childName" placeholder="Child name" required>
+        <input type="number" id="childGoodScore" placeholder="Child's Goodness Score" required>
+        <input type="text" id="childCity" placeholder="City" required><br>
+        <button id="addChildButton">Add Child</button>
+    </div>
+
+    <section>
+        <div class="savedChildren">
+            <h2>Saved Localstorage Posts</h2>
+            <div id="output"></div>
+            <div id="savedOutput"></div>
+        </div>
+
+        <div class="toys">
+            <p>Nintendo Switch</p><button>+</button>
+            <p>Model trains</p><button>+</button>
+            <p>Barbie</p><button>+</button>
+            <p>Teddy Bear</p><button>+</button>
+        </div>
+    </section>
+
+</main>
+    
+    <script src="shop.js"></script>
+</body>
+</html>
