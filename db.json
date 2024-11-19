@@ -2,19 +2,23 @@
   "children": [
     {
       "id": "737c",
-      "name": "name",
+      "name": "wel",
       "goodness": "2",
       "location": "diest",
       "toys": []
     },
     {
+      "id": "8fb7",
+      "name": "huh",
+      "goodness": "3",
+      "location": "sd",
       "toys": []
     },
     {
-      "id": "8fb7",
-      "name": "no",
-      "goodness": "3",
-      "location": "sd",
+      "id": "ec89",
+      "name": "test",
+      "goodness": "5656",
+      "location": "rrrr",
       "toys": []
     }
   ],
