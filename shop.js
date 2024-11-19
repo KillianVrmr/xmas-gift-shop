@@ -57,7 +57,7 @@ function fetchdata() {
                             <button onclick="editChild('${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
                             <button id="saveButton${child.id}" hidden onclick="saveToDb('${child.id}')">Save Changes</button>
-                            <button onclick="saveToLocal('${child.id}', '${child.name}', ${child.goodness}, '${child.location}')">Save</button>
+                            <button onclick="saveToLocal('${child.id}', '${child.name}', ${child.goodness}, '${child.location}')">Save Locally</button>
                             <button onclick="deleteChild('${child.id}')">Delete</button>
                         </div>
                     </div>
@@ -75,7 +75,7 @@ function editChild(id) {
     saveButton.hidden = false;
 
 }
-
+//original saveToDb function
 // function saveToDb(id){
 //     console.log("this is all the info given in"+ id)
 //     const newName = document.getElementById(`editChildName${id}`).value;
@@ -149,7 +149,7 @@ function loadSavedPosts() {
             const postDiv = document.createElement('div');
             postDiv.className = 'post-item';
             postDiv.innerHTML = `
-                <span>${child.name} (${child.goodness}) (${child.location})</span>
+                <span>${child.name} <br> Goodness score: ${child.goodness} Location: ${child.location}<br></span>
                 <button onclick="removeFromSaved('${child.id}')">Remove</button>
             `;
             savedOutput.appendChild(postDiv);
