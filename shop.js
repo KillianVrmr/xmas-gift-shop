@@ -48,21 +48,16 @@ function fetchdata() {
             sortedData.forEach(child => {
                 output.innerHTML += `
                     <div class="child-item" id="child-${child.id}">
-                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location}</span>
-                        <div class="edit-form" style="display: none;">
-                            <input type="text" class="edit-name" value="${child.name}">
-                            <input type="number" class="edit-goodness" value="${child.goodness}">
-                            <input type="number" class="edit-toys-count" value="${child.toys.length}">
-                            <button class="smallbutton" onclick="saveEdit('${child.id}')">S</button>
-                            <button class="smallbutton" onclick="cancelEdit('${child.id}')">X</button>
-                        </div>
+                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location})</span>
+                        
                         <div class=drag-toys>
                         </div>
                         
                         <div class="button-group">
-                            <button onclick="editChild('editChildName${child.id}')">Edit</button>
+                            <button onclick="editChild('${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
-                            <button onclick="saveToDb('${child.id}')">Save</button>
+                            <button id="saveButton${child.id}" hidden onclick="saveToDb('${child.id}')">Save Changes</button>
+                            <button onclick="saveToLocal('${child.id}', '${child.name}', ${child.goodness}, '${child.location}')">Save</button>
                             <button onclick="deleteChild('${child.id}')">Delete</button>
                         </div>
                     </div>
@@ -72,25 +67,57 @@ function fetchdata() {
         .catch(e => console.error('Error fetching posts:', e));
 }
 // Editing the childeren
-function editChild(id){
-    console.log(id)
-    document.getElementById(id).hidden = false;
+function editChild(id) {
+    const inputField = document.getElementById(`editChildName${id}`);
+    const saveButton = document.getElementById(`saveButton${id}`);
+    
+    inputField.hidden = false;
+    saveButton.hidden = false;
+
 }
 
-function saveToDb(id){
-    console.log("this is all the info given in"+ id)
-    const newName = document.getElementById(`editChildName${id}`).value;
+// function saveToDb(id){
+//     console.log("this is all the info given in"+ id)
+//     const newName = document.getElementById(`editChildName${id}`).value;
+//     fetch(`${url}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             name: newName
+//         })
+//     })
+//     .then(() => fetchdata())
+//     .catch(e => console.error('Error updating post:', e)); 
+// }
+
+function saveToDb(id) {
+    const inputField = document.getElementById(`editChildName${id}`);
+    const saveButton = document.getElementById(`saveButton${id}`);
+    
+    const newName = inputField.value;
+    
     fetch(`${url}/${id}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            name: newName
-        })
+        body: JSON.stringify({ name: newName }),
     })
-    .then(() => fetchdata())
-    .catch(e => console.error('Error deleting post:', e)); 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server responded with ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(() => {
+        fetchdata(); // Refresh data
+        // Hide input field and Save button after saving
+        inputField.hidden = true;
+        saveButton.hidden = true;
+    })
+    .catch(e => console.error('Error updating post:', e));
 }
 
 // Delete post from database 
