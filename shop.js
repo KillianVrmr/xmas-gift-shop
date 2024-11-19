@@ -56,8 +56,9 @@ function fetchdata() {
                             <button class="smallbutton" onclick="cancelEdit('${child.id}')">X</button>
                         </div>
                         <div class="button-group">
-                            <button onclick="editChild('${child.id}')">Edit</button>
-                            <button onclick="saveToLocal('${child.id}', '${child.name}', ${child.goodness}, ${child.toys.length}, '${child.location}')">Save</button>
+                            <button onclick="editChild('editChildName${child.id}')">Edit</button>
+                            <input type="text" id="editChildName${child.id}" hidden>
+                            <button onclick="saveToDb('${child.id}')">Save</button>
                             <button onclick="deleteChild('${child.id}')">Delete</button>
                         </div>
                     </div>
@@ -65,6 +66,27 @@ function fetchdata() {
             });
         })
         .catch(e => console.error('Error fetching posts:', e));
+}
+// Editing the childeren
+function editChild(id){
+    console.log(id)
+    document.getElementById(id).hidden = false;
+}
+
+function saveToDb(id){
+    console.log("this is all the info given in"+ id)
+    const newName = document.getElementById(`editChildName${id}`).value;
+    fetch(`${url}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: newName
+        })
+    })
+    .then(() => fetchdata())
+    .catch(e => console.error('Error deleting post:', e)); 
 }
 
 // Delete post from database 
@@ -78,4 +100,4 @@ function deleteChild(id) {
 
 // Initial load
 fetchdata();
-loadSavedPosts();
+//loadSavedPosts();
