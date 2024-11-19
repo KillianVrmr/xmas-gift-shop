@@ -231,4 +231,3 @@ function addToy(toy){
 
 fetchdata(); // haalt uit json database
 loadSavedPosts(); // haalt uit localstorage 
-
