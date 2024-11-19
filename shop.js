@@ -1,8 +1,7 @@
 const url = 'http://localhost:3000/children';
 const output = document.getElementById('output');
 const savedOutput = document.getElementById('savedOutput');
-
-const source = document.getElementById("draggable");
+const sources = document.querySelectorAll(".toy-item");
 let dragged;
 // Add new post
 document.getElementById('addChildButton').addEventListener('click', () => {
@@ -167,24 +166,25 @@ function removeFromSaved(childId) {
     }
 }
 
+if (sources.length > 0) {
+  sources.forEach(source => {
+    source.addEventListener("dragstart", (event) => {
+      dragged = event.target;
+      event.target.classList.add("dragging");
+    });
 
+    source.addEventListener("dragend", (event) => {
+      event.target.classList.remove("dragging");
+    });
 
-/* events fired on the draggable target */
-source.addEventListener("drag", (event) => {
-  console.log("dragging");
-});
+    source.addEventListener("drag", (event) => {
+      console.log("Dragging:", event.target);
+    });
+  });
+} else {
+  console.warn("No elements with class 'toy-item' found.");
+}
 
-source.addEventListener("dragstart", (event) => {
-  // store a ref. on the dragged elem
-  dragged = event.target;
-  // make it half transparent
-  event.target.classList.add("dragging");
-});
-
-source.addEventListener("dragend", (event) => {
-  // reset the transparency
-  event.target.classList.remove("dragging");
-});
 
 /* events fired on the drop targets */
 const target = document.getElementById("drop-target");
@@ -225,9 +225,9 @@ target.addEventListener("drop", (event) => {
   }
 });
 function addToy(toy){
-
+    console.log("oh yhe we got to the empty function we need");
 }
 
 
 fetchdata(); // haalt uit json database
-loadSavedPosts(); // haalt uit localstorage 
+loadSavedPosts(); // haalt uit localstorage
