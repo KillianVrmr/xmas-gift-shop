@@ -48,7 +48,7 @@ function fetchdata() {
             sortedData.forEach(child => {
                 output.innerHTML += `
                     <div class="child-item" id="child-${child.id}">
-                        <span class="child-content">${child.name} (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})</span>
+                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location}</span>
                         <div class="edit-form" style="display: none;">
                             <input type="text" class="edit-name" value="${child.name}">
                             <input type="number" class="edit-goodness" value="${child.goodness}">
@@ -56,6 +56,9 @@ function fetchdata() {
                             <button class="smallbutton" onclick="saveEdit('${child.id}')">S</button>
                             <button class="smallbutton" onclick="cancelEdit('${child.id}')">X</button>
                         </div>
+                        <div class=drag-toys>
+                        </div>
+                        
                         <div class="button-group">
                             <button onclick="editChild('${child.id}')">Edit</button>
                             <button onclick="saveToLocal('${child.id}', '${child.name}', ${child.goodness}, ${child.toys.length}, '${child.location}')">Save</button>
