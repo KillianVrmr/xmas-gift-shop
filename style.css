@@ -52,8 +52,6 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-
-    border-style: solid;
 }
 
 /* Children */
@@ -62,4 +60,24 @@ section {
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
+}
+
+.toy-item {
+    margin: 5px;
+    background-color: rgb(146, 146, 230);
+    border-radius: 10px;
+}
+
+.drag-toys {
+    padding: 10px;
+    min-height: 30px;
+    background-color: rgb(146, 146, 230);
+    border-radius: 10px;
+}
+
+.no-posts-message, .post-item {
+    background-color:  rgba(246, 243, 240, 0.841);
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
 }
