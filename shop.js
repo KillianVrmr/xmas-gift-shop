@@ -28,6 +28,7 @@ document.getElementById('addChildButton').addEventListener('click', () => {
     .catch(e => console.error('Error adding post:', e));
 });
 
+// DATABASE FUNCTIONS
 // Fetch data from database
 function fetchdata() {
     output.innerHTML = '';
@@ -42,12 +43,12 @@ function fetchdata() {
                 return;
             }
             
-            // Sort posts by timestamp in descending order
+            // Sort posts by goodness-level
             const sortedData = data.sort((a, b) => b.goodness - a.goodness);
             sortedData.forEach(child => {
                 output.innerHTML += `
                     <div class="child-item" id="child-${child.id}">
-                        <span class="child-content">${child.name} (Goodness: ${child.goodness}) (Toys: ${child.toys.length})</span>
+                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location}</span>
                         <div class="edit-form" style="display: none;">
                             <input type="text" class="edit-name" value="${child.name}">
                             <input type="number" class="edit-goodness" value="${child.goodness}">
@@ -55,6 +56,9 @@ function fetchdata() {
                             <button class="smallbutton" onclick="saveEdit('${child.id}')">S</button>
                             <button class="smallbutton" onclick="cancelEdit('${child.id}')">X</button>
                         </div>
+                        <div class=drag-toys>
+                        </div>
+                        
                         <div class="button-group">
                             <button onclick="editChild('editChildName${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
@@ -98,6 +102,75 @@ function deleteChild(id) {
     .catch(e => console.error('Error deleting post:', e));
 }
 
-// Initial load
-fetchdata();
-//loadSavedPosts();
+// LOCALSTORAGE FUNCTIONS
+function loadSavedPosts() {
+    try {
+        const savedChildren = JSON.parse(localStorage.getItem('savedChildren') || '[]');
+        savedOutput.innerHTML = '';
+        
+        if (savedChildren.length === 0) {
+            const noChildrenMessage = document.createElement('div');
+            noChildrenMessage.className = 'no-posts-message';
+            noChildrenMessage.textContent = 'No saved posts yet!';
+            savedOutput.appendChild(noChildrenMessage);
+            return;
+        }
+
+        // Sort saved posts by timestamp in descending order
+        savedChildren.sort((a, b) => b.goodness - a.goodness);
+        savedChildren.forEach(child => {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post-item';
+            postDiv.innerHTML = `
+                <span>${child.name} (${child.goodness}) (${child.location})</span>
+                <button onclick="removeFromSaved('${child.id}')">Remove</button>
+            `;
+            savedOutput.appendChild(postDiv);
+        });
+    } catch (error) {
+        console.error('Error loading saved children:', error);
+        localStorage.setItem('savedChildren', '[]');
+    }
+}
+
+function saveToLocal(childId, childName, childGoodness, childLocation) {
+    try {
+        const child = {
+            id: childId,  // postId is received as a string
+            name: childName,
+            goodness: childGoodness,
+            location: childLocation
+        };
+        
+        const savedChildren = JSON.parse(localStorage.getItem('savedChildren') || '[]');
+        
+        if (!savedChildren.some(c => c.id === child.id)) {  // Comparing strings with strings
+            savedChildren.push(child);
+            localStorage.setItem('savedChildren', JSON.stringify(savedChildren));
+            loadSavedPosts();
+        } else {
+            alert('This post is already saved!');
+        }
+    } catch (error) {
+        console.error('Error saving post:', error);
+    }
+}
+
+function removeFromSaved(childId) {
+    try {
+        const savedChildren = JSON.parse(localStorage.getItem('savedChildren') || '[]');
+        // Convert postId to string for consistent comparison
+        const childIdString = String(childId);
+        const updatedChildren = savedChildren.filter(post => post.id !== childIdString);
+        localStorage.setItem('savedChildren', JSON.stringify(updatedChildren));
+        loadSavedPosts();
+    } catch (error) {
+        console.error('Error removing saved post:', error);
+    }
+}
+
+
+
+fetchdata(); // haalt uit json database
+loadSavedPosts(); // haalt uit localstorage 
+
