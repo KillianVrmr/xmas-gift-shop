@@ -2,37 +2,19 @@
   "children": [
     {
       "id": "737c",
-      "name": "jake",
+      "name": "name",
       "goodness": "2",
       "location": "diest",
       "toys": []
     },
     {
-      "id": "2ed3",
-      "name": "tommie",
-      "goodness": "80",
-      "location": "diest",
       "toys": []
     },
     {
-      "id": "55cf",
-      "name": "Poezie",
-      "goodness": "60",
-      "location": "diest",
-      "toys": []
-    },
-    {
-      "id": "974d",
-      "name": "Anika",
-      "goodness": "5",
-      "location": "eersel",
-      "toys": []
-    },
-    {
-      "id": "943d",
-      "name": "Matt",
-      "goodness": "70",
-      "location": "Scherpenheuvel",
+      "id": "8fb7",
+      "name": "no",
+      "goodness": "3",
+      "location": "sd",
       "toys": []
     }
   ],
@@ -46,11 +28,11 @@
       "name": "Trains"
     },
     {
-      "id": "1",
+      "id": "3",
       "name": "Barbie"
     },
     {
-      "id": "1",
+      "id": "4",
       "name": "Teddy Bear"
     }
   ]
