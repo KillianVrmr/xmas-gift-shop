@@ -60,8 +60,9 @@ function fetchdata() {
                         </div>
                         
                         <div class="button-group">
-                            <button onclick="editChild('editChildName${child.id}')">Edit</button>
+                            <button onclick="editChild('${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
+                            <div class="Toys${child.id}"><button>haha</button></div>
                             <button onclick="saveToDb('${child.id}')">Save</button>
                             <button onclick="deleteChild('${child.id}')">Delete</button>
                         </div>
@@ -71,10 +72,35 @@ function fetchdata() {
         })
         .catch(e => console.error('Error fetching posts:', e));
 }
+
+function addToys(id){
+    console.log(id, document.getElementById(`Toys${id}`))
+    const parentContainer = document.getElementById(`Toys${id}`); // Step 1
+
+    const objects = [{
+        "id": "1",
+        "name": "Nintendo Switch"
+      },
+      {
+        "id": "2",
+        "name": "Trains"
+      }]; // Step 2
+
+    objects.forEach(object => {
+        const div = document.createElement('div'); // Step 3
+        const button = document.createElement('button');
+        button.textContent = 'Button';
+        div.textContent = object.name;
+        div.appendChild(button);
+        parentContainer.appendChild(div);
+});
+
+}
 // Editing the childeren
 function editChild(id){
-    console.log(id)
-    document.getElementById(id).hidden = false;
+    addToys(id);
+    console.log("editChildName"+id);
+    document.getElementById("editChildName"+id).hidden = false;
 }
 
 function saveToDb(id){
