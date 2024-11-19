@@ -2,6 +2,8 @@ const url = 'http://localhost:3000/children';
 const output = document.getElementById('output');
 const savedOutput = document.getElementById('savedOutput');
 
+const source = document.getElementById("draggable");
+let dragged;
 // Add new post
 document.getElementById('addChildButton').addEventListener('click', () => {
     const newPost = {
@@ -47,25 +49,20 @@ function fetchdata() {
             const sortedData = data.sort((a, b) => b.goodness - a.goodness);
             sortedData.forEach(child => {
                 output.innerHTML += `
-                    <div class="child-item" id="child-${child.id}">
+                    <div class="child-item"   id="child-${child.id}">
                         <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location}</span>
-                        <div class="edit-form" style="display: none;">
-                            <input type="text" class="edit-name" value="${child.name}">
-                            <input type="number" class="edit-goodness" value="${child.goodness}">
-                            <input type="number" class="edit-toys-count" value="${child.toys.length}">
-                            <button class="smallbutton" onclick="saveEdit('${child.id}')">S</button>
-                            <button class="smallbutton" onclick="cancelEdit('${child.id}')">X</button>
-                        </div>
+                        
                         <div class=drag-toys>
                         </div>
                         
                         <div class="button-group">
                             <button onclick="editChild('editChildName${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
-                            <button onclick="saveToDb('${child.id}')">Save</button>
+                            <button onclick="saveToLocal">Save</button>
                             <button onclick="deleteChild('${child.id}')">Delete</button>
                         </div>
                     </div>
+  
                 `;
             });
         })
@@ -154,6 +151,7 @@ function saveToLocal(childId, childName, childGoodness, childLocation) {
     } catch (error) {
         console.error('Error saving post:', error);
     }
+    saveToDb(childId)
 }
 
 function removeFromSaved(childId) {
@@ -169,6 +167,66 @@ function removeFromSaved(childId) {
     }
 }
 
+
+
+/* events fired on the draggable target */
+source.addEventListener("drag", (event) => {
+  console.log("dragging");
+});
+
+source.addEventListener("dragstart", (event) => {
+  // store a ref. on the dragged elem
+  dragged = event.target;
+  // make it half transparent
+  event.target.classList.add("dragging");
+});
+
+source.addEventListener("dragend", (event) => {
+  // reset the transparency
+  event.target.classList.remove("dragging");
+});
+
+/* events fired on the drop targets */
+const target = document.getElementById("drop-target");
+target.addEventListener(
+  "dragover",
+  (event) => {
+    // prevent default to allow drop
+    event.preventDefault();
+  },
+  false,
+);
+
+target.addEventListener("dragenter", (event) => {
+  // highlight potential drop target when the draggable element enters it
+  if (event.target.classList.contains("dropzone")) {
+    event.target.classList.add("dragover");
+  }
+});
+
+target.addEventListener("dragleave", (event) => {
+  // reset background of potential drop target when the draggable element leaves it
+  if (event.target.classList.contains("dropzone")) {
+    event.target.classList.remove("dragover");
+  }
+});
+
+target.addEventListener("drop", (event) => {
+  // prevent default action (open as link for some elements)
+  event.preventDefault();
+  console.log(dragged)
+  const draggedElement = document.getElementById(dragged);
+  const toy = draggedElement.value;
+  addToy(toy)
+  // move dragged element to the selected drop target
+  if (event.target.classList.contains("dropzone")) {
+    event.target.classList.remove("dragover");
+    event.target.appendChild(dragged);
+  }
+});
+function addToy(toy){
+
+}
 
 
 fetchdata(); // haalt uit json database
