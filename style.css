@@ -1,7 +1,7 @@
 /* global styling and layout */
 body {
     background: rgb(137,247,235);
-    background: linear-gradient(153deg, rgba(137,247,235,1) 11%, rgba(26,110,232,1) 51%, rgba(175,48,207,1) 100%);
+    background: linear-gradient(153deg, rgb(225, 222, 219) 5%, rgb(16, 126, 27) 12%, rgb(152, 20, 20) 30%);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -20,6 +20,28 @@ section {
     align-content: center;
 }
 
+.childList{
+    background: #902121; /* White background for the card */
+    border: 1px solid #310303; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    padding: 16px;
+    margin: 16px auto;
+    max-width: 400px; /* Centered and not too wide */
+    box-sizing: border-box;
+  }
+
+  .childList button {
+    background: #014112; /* Bootstrap-style blue */
+    color: #7fd6b2; /* White text */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+  }
 /* Child input fields */
 
 .input-group {

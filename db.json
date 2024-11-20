@@ -1,32 +1,42 @@
 {
   "children": [
     {
-      "id": "9630",
-      "name": "Bart de Bever",
-      "goodness": "40",
-      "location": "Lommel",
+      "id": "332f",
+      "name": "",
+      "goodness": "12",
+      "location": "12",
+      "toys": [
+        "lego",
+        "not lego"
+      ]
+    },
+    {
+      "id": "1ffb",
+      "name": "",
+      "goodness": "42",
+      "location": "sdfd",
       "toys": []
     },
     {
-      "id": "da72",
-      "name": "Joren de Haas",
+      "id": "d53d",
+      "name": "",
       "goodness": "4",
-      "location": "Eindhoven",
-      "toys": []
+      "location": "sdf",
+      "toys": [
+        "Barbie"
+      ]
     },
     {
-      "id": "6de5",
-      "name": "Tommie Bergstrom",
-      "goodness": "60",
-      "location": "Diest",
-      "toys": []
-    },
-    {
-      "id": "bbf2",
-      "name": "Katrien",
-      "goodness": "40",
-      "location": "Bergeijk",
-      "toys": []
+      "id": "31ba",
+      "name": "",
+      "goodness": "422453",
+      "location": "6466",
+      "toys": [
+        "Nintendo Switch",
+        "Trains",
+        "Barbie",
+        "Teddy Bear"
+      ]
     }
   ],
   "toys": [
@@ -47,8 +57,16 @@
       "name": "Teddy Bear"
     },
     {
-      "id": "5",
-      "name": "test toy"
+      "id": "4f5c",
+      "name": "not lego"
+    },
+    {
+      "id": "20de",
+      "name": "asds"
+    },
+    {
+      "id": "3279",
+      "name": "sddfs"
     }
   ]
 }
