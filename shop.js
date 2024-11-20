@@ -125,6 +125,8 @@ function fetchdata() {
 function fillDropdown(id){
     
     const dropdownElement = document.getElementById(`dropdown-${id}`)
+    dropdownElement.innerHTML = '';
+    dropdownElement.setAttribute('multiple', 'multiple');
     fetch(toysUrl)
     .then(response => response.json())
     .then(data => {
@@ -135,8 +137,6 @@ function fillDropdown(id){
             option.text = item.name; // Adjust based on your data structure
             dropdownElement.appendChild(option);})})
     .catch(e => console.error('Error failed to create dropdown menu:', e))
-    console.log(parentElement)
-    
 }
 
 // Editing the childeren
@@ -155,13 +155,18 @@ function editChild(id){
 
 function saveToDb(id){
     const newName = document.getElementById(`input-${id}`).value;
+    const unselectedValues = Array.from(document.getElementById(`dropdown-${id}`).options)
+    .filter(option => option.selected)
+    .map(option => option.text);
+    
+    console.log(unselectedValues)
     fetch(`${url}/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: newName
+            name: newName ,toys: unselectedValues
         })
     })
     .then(() => fetchdata())

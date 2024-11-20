@@ -9,14 +9,16 @@
     },
     {
       "id": "332f",
-      "name": "sdfsdf",
+      "name": "",
       "goodness": "12",
       "location": "12",
-      "toys": []
+      "toys": [
+        "Barbie"
+      ]
     },
     {
       "id": "1ffb",
-      "name": "sddsffeee",
+      "name": "",
       "goodness": "42",
       "location": "sdfd",
       "toys": []
@@ -30,10 +32,15 @@
     },
     {
       "id": "31ba",
-      "name": "sdfsdf",
+      "name": "",
       "goodness": "422453",
       "location": "6466",
-      "toys": []
+      "toys": [
+        "Nintendo Switch",
+        "Trains",
+        "Barbie",
+        "Teddy Bear"
+      ]
     },
     {
       "id": "8b25",
