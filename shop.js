@@ -316,7 +316,6 @@ document.getElementById('addToyType').addEventListener('click', function() {
     
 );
 
-fetchToys();
 fetchdata(); // haalt uit json database
 loadSavedPosts(); // haalt uit localstorage 
 
