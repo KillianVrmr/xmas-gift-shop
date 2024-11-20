@@ -1,5 +1,6 @@
 const url = 'http://localhost:3000/children';
 const toysUrl = 'http://localhost:3000/toys';
+
 const output = document.getElementById('output');
 const savedOutput = document.getElementById('savedOutput');
 
@@ -49,6 +50,7 @@ function fetchdata() {
             // Sort posts by goodness-level
             const sortedData = data.sort((a, b) => b.goodness - a.goodness);
             sortedData.forEach(child => {
+              
                 const childIdentity = document.createElement('div');
                 childIdentity.id = `${child.id}`;
                 childIdentity.className = "childList";
@@ -123,6 +125,7 @@ function fetchdata() {
         })
         .catch(e => console.error('Error fetching posts:', e));
 }
+
 function fillDropdown(id){
     
     const dropdownElement = document.getElementById(`dropdown-${id}`)
@@ -152,7 +155,24 @@ function editChild(id){
     
     // Check and set display property
     inputElement.style.display = 'block'; // Unhide the element by setting it to 'block'
+
 }
+//original saveToDb function
+// function saveToDb(id){
+//     console.log("this is all the info given in"+ id)
+//     const newName = document.getElementById(`editChildName${id}`).value;
+//     fetch(`${url}/${id}`, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             name: newName
+//         })
+//     })
+//     .then(() => fetchdata())
+//     .catch(e => console.error('Error updating post:', e)); 
+// }
 
 function saveToDb(id){
     const newName = document.getElementById(`input-${id}`).value;
@@ -161,17 +181,30 @@ function saveToDb(id){
     .map(option => option.text);
     
     console.log(unselectedValues)
+
     fetch(`${url}/${id}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             name: newName ,toys: unselectedValues
         })
+
     })
-    .then(() => fetchdata())
-    .catch(e => console.error('Error deleting post:', e)); 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server responded with ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(() => {
+        fetchdata(); // Refresh data
+        // Hide input field and Save button after saving
+        inputField.hidden = true;
+        saveButton.hidden = true;
+    })
+    .catch(e => console.error('Error updating post:', e));
 }
 
 // Delete post from database 
@@ -203,7 +236,7 @@ function loadSavedPosts() {
             const postDiv = document.createElement('div');
             postDiv.className = 'post-item';
             postDiv.innerHTML = `
-                <span>${child.name} (${child.goodness}) (${child.location})</span>
+                <span>${child.name} <br> Goodness score: ${child.goodness} Location: ${child.location}<br></span>
                 <button onclick="removeFromSaved('${child.id}')">Remove</button>
             `;
             savedOutput.appendChild(postDiv);
@@ -283,7 +316,7 @@ document.getElementById('addToyType').addEventListener('click', function() {
     
 );
 
-
+fetchToys();
 fetchdata(); // haalt uit json database
 loadSavedPosts(); // haalt uit localstorage 
 
