@@ -1,21 +1,42 @@
 {
   "children": [
     {
-      "id": "737c",
-      "name": "name",
-      "goodness": "2",
-      "location": "diest",
+      "id": "332f",
+      "name": "",
+      "goodness": "12",
+      "location": "12",
+      "toys": [
+        "lego",
+        "not lego"
+      ]
+    },
+    {
+      "id": "1ffb",
+      "name": "",
+      "goodness": "42",
+      "location": "sdfd",
       "toys": []
     },
     {
-      "toys": []
+      "id": "d53d",
+      "name": "",
+      "goodness": "4",
+      "location": "sdf",
+      "toys": [
+        "Barbie"
+      ]
     },
     {
-      "id": "8fb7",
-      "name": "no",
-      "goodness": "3",
-      "location": "sd",
-      "toys": []
+      "id": "31ba",
+      "name": "",
+      "goodness": "422453",
+      "location": "6466",
+      "toys": [
+        "Nintendo Switch",
+        "Trains",
+        "Barbie",
+        "Teddy Bear"
+      ]
     }
   ],
   "toys": [
@@ -34,6 +55,22 @@
     {
       "id": "4",
       "name": "Teddy Bear"
+    },
+    {
+      "id": "5",
+      "name": "lego"
+    },
+    {
+      "id": "4f5c",
+      "name": "not lego"
+    },
+    {
+      "id": "20de",
+      "name": "asds"
+    },
+    {
+      "id": "3279",
+      "name": "sddfs"
     }
   ]
 }
