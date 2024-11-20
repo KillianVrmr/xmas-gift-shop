@@ -51,6 +51,7 @@ function fetchdata() {
             sortedData.forEach(child => {
                 const childIdentity = document.createElement('div');
                 childIdentity.id = `${child.id}`;
+                childIdentity.className = "childList";
                 // Create the edit button
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
