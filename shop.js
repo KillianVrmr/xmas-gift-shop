@@ -1,4 +1,5 @@
 const url = 'http://localhost:3000/children';
+const toysUrl = 'http://localhost:3000/toys';
 const output = document.getElementById('output');
 const savedOutput = document.getElementById('savedOutput');
 
@@ -89,7 +90,7 @@ function fetchdata() {
                     console.log(`${child.id}`)
                    editChild(`${child.id}`)
                 });
-
+                dropdown.addEventListener('focus', () => {fillDropdown(child.id)} )
                 saveLocalButton.addEventListener('click', () => {
                     saveToLocal(child.id, child.name, child.goodness, child.location)
                 });
@@ -122,6 +123,19 @@ function fetchdata() {
         .catch(e => console.error('Error fetching posts:', e));
 }
 function fillDropdown(id){
+    
+    const dropdownElement = document.getElementById(`dropdown-${id}`)
+    fetch(toysUrl)
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+            // Create an option element
+            const option = document.createElement('option');
+            option.value = item.id; // Adjust based on your data structure
+            option.text = item.name; // Adjust based on your data structure
+            dropdownElement.appendChild(option);})})
+    .catch(e => console.error('Error failed to create dropdown menu:', e))
+    console.log(parentElement)
     
 }
 
