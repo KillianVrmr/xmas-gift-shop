@@ -50,8 +50,6 @@ section {
     margin-top: 80px;
     max-height: 350px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
 }
 
 /* Children */

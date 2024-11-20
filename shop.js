@@ -1,4 +1,5 @@
 const url = 'http://localhost:3000/children';
+const toyUrl = 'http://localhost:3000/toys';
 const output = document.getElementById('output');
 const savedOutput = document.getElementById('savedOutput');
 
@@ -48,11 +49,8 @@ function fetchdata() {
             sortedData.forEach(child => {
                 output.innerHTML += `
                     <div class="child-item" id="child-${child.id}">
-                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness}) (Toys: ${child.toys || 0})(Location:${child.location})</span>
-                        
-                        <div class=drag-toys>
-                        </div>
-                        
+                        <span class="child-content"><strong>${child.name}</strong><br> (Goodness: ${child.goodness})(Location:${child.location})(Toys: ${child.toys.map(toy => toy.name).join(', ') || 'None'})</span>
+
                         <div class="button-group">
                             <button onclick="editChild('${child.id}')">Edit</button>
                             <input type="text" id="editChildName${child.id}" hidden>
@@ -66,6 +64,35 @@ function fetchdata() {
         })
         .catch(e => console.error('Error fetching posts:', e));
 }
+
+// loadin toy url
+function fetchToys() {
+    toyDiv.innerHTML = '';
+    fetch(toyUrl)
+        .then(res => res.json())
+        .then(data => {
+            if (data.length === 0) {
+                const noPostsMessage = document.createElement('div');
+                noPostsMessage.className = 'no-posts-message';
+                noPostsMessage.textContent = 'No posts available. Add your first post!';
+                output.appendToy(noPostsMessage);
+                return;
+            }
+            
+            //dit nog vervangen door andere sorteermanier
+            const sortedData = data.sort((a, b) => b.goodness - a.goodness);
+
+            sortedData.forEach(toy => {
+                output.innerHTML += `
+                    <div class="toy-item" id="toy${toy.id}">
+                        <span class="toy-content"><strong>${toy.name}</strong><br></span>    
+                    </div>
+                `;
+            });
+        })
+        .catch(e => console.error('Error fetching posts:', e));
+}
+
 // Editing the childeren
 function editChild(id) {
     const inputField = document.getElementById(`editChildName${id}`);
@@ -197,7 +224,7 @@ function removeFromSaved(childId) {
 }
 
 
-
+fetchToys();
 fetchdata(); // haalt uit json database
 loadSavedPosts(); // haalt uit localstorage 
 
