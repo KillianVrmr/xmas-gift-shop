@@ -1,32 +1,6 @@
 {
   "children": [
     {
-      "id": "332f",
-      "name": "name",
-      "goodness": "12",
-      "location": "12",
-      "toys": [
-        "lego",
-        "not lego"
-      ]
-    },
-    {
-      "id": "1ffb",
-      "name": "name",
-      "goodness": "42",
-      "location": "sdfd",
-      "toys": []
-    },
-    {
-      "id": "d53d",
-      "name": "name",
-      "goodness": "4",
-      "location": "sdf",
-      "toys": [
-        "Barbie"
-      ]
-    },
-    {
       "id": "31ba",
       "name": "Maria",
       "goodness": "422453",
@@ -34,17 +8,10 @@
       "toys": []
     },
     {
-      "id": "c10a",
-      "name": "henk",
+      "id": "232b",
+      "name": "Henk",
       "goodness": "70",
-      "location": "lommel",
-      "toys": []
-    },
-    {
-      "id": "ffd1",
-      "name": "testChild",
-      "goodness": "80",
-      "location": "Herk",
+      "location": "Hertendorp",
       "toys": []
     }
   ],
@@ -54,32 +21,36 @@
       "name": "not lego"
     },
     {
-      "id": "20de",
-      "name": "asds"
+      "id": "2010",
+      "name": "lego"
     },
     {
-      "id": "3279",
-      "name": "sddfs"
+      "id": "3702",
+      "name": "barbie"
     },
     {
-      "id": "f4db",
-      "name": "toy"
+      "id": "5a88",
+      "name": "nintendo switch"
     },
     {
-      "id": "b186",
-      "name": "horse"
+      "id": "1ac8",
+      "name": "boek"
     },
     {
-      "id": "55e7",
-      "name": "jake paul"
+      "id": "c7a9",
+      "name": "test"
     },
     {
-      "id": "6d80",
-      "name": "koekje"
+      "id": "b4f0",
+      "name": "appels"
     },
     {
-      "id": "a4b1",
-      "name": "auto"
+      "id": "7c45",
+      "name": "Dennis Bergkamp"
+    },
+    {
+      "id": "ce15",
+      "name": "puppy"
     }
   ]
 }

@@ -56,7 +56,7 @@ function fetchdata() {
                 childIdentity.className = "childList";
                 // Create the edit button
                 const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
+                editButton.textContent = 'Edit Name';
             
                 // Create the input element and hide it by default
                 const input = document.createElement('input');
@@ -65,11 +65,11 @@ function fetchdata() {
                 input.style.display = 'none';
                 //display elements
                 const childName = document.createElement('p');
-                childName.textContent = child.name;
+                childName.textContent = `Name: ${child.name}`;
                 const childGoodness = document.createElement("p");
-                childGoodness.textContent = child.goodness;
+                childGoodness.textContent = `Goodness Level: ${child.goodness}`;
                 const childLocation = document.createElement('p');
-                childLocation.textContent = child.location;
+                childLocation.textContent = `Home Location: ${child.location}`;
 
                 const dropdown = document.createElement('select');
                 dropdown.id = `dropdown-${child.id}`;
@@ -157,22 +157,7 @@ function editChild(id){
     inputElement.style.display = 'block'; // Unhide the element by setting it to 'block'
 
 }
-//original saveToDb function
-// function saveToDb(id){
-//     console.log("this is all the info given in"+ id)
-//     const newName = document.getElementById(`editChildName${id}`).value;
-//     fetch(`${url}/${id}`, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             name: newName
-//         })
-//     })
-//     .then(() => fetchdata())
-//     .catch(e => console.error('Error updating post:', e)); 
-// }
+
 
 function saveToDb(id){
     const newName = document.getElementById(`input-${id}`).value;
@@ -230,7 +215,7 @@ function loadSavedPosts() {
             return;
         }
 
-        // Sort saved posts by timestamp in descending order
+        // Sort saved posts by goodness in descending order
         savedChildren.sort((a, b) => b.goodness - a.goodness);
         savedChildren.forEach(child => {
             const postDiv = document.createElement('div');
