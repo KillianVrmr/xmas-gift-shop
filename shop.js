@@ -248,7 +248,39 @@ function removeFromSaved(childId) {
         console.error('Error removing saved post:', error);
     }
 }
-
+//this function makes all the types of toys to be able to added on as a visual indicator but also,
+// mirrors this in the databank since thats used for the actual choices
+document.getElementById('addToyType').addEventListener('click', function() {
+    // Your event handling code here
+    const toyType = document.getElementById('toyType').value;
+    let exists = false;
+    if(toyType != ""){
+        fetch(toysUrl)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                if(toyType==item.name){exists=true}
+                console.log(exists,toyType,item.name)
+                console.log('Button clicked!',exists);
+            })
+            if(!exists)
+                {
+                    const newToyType = document.createElement('div');
+                    newToyType.textContent = toyType;
+                    document.getElementById('toyTypes').appendChild(newToyType);
+                    fetch(toysUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name: toyType })})
+                }
+        
+        }).catch(error => console.error("Could not find toys in databank", error))}}
+    
+    
+    
+);
 
 
 fetchdata(); // haalt uit json database

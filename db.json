@@ -1,19 +1,13 @@
 {
   "children": [
     {
-      "id": "bd69",
-      "name": "s",
-      "goodness": "3",
-      "location": "sdf",
-      "toys": []
-    },
-    {
       "id": "332f",
       "name": "",
       "goodness": "12",
       "location": "12",
       "toys": [
-        "Barbie"
+        "lego",
+        "not lego"
       ]
     },
     {
@@ -25,10 +19,12 @@
     },
     {
       "id": "d53d",
-      "name": "efefe",
+      "name": "",
       "goodness": "4",
       "location": "sdf",
-      "toys": []
+      "toys": [
+        "Barbie"
+      ]
     },
     {
       "id": "31ba",
@@ -41,13 +37,6 @@
         "Barbie",
         "Teddy Bear"
       ]
-    },
-    {
-      "id": "8b25",
-      "name": "i",
-      "goodness": "4",
-      "location": "jukuk",
-      "toys": []
     }
   ],
   "toys": [
@@ -70,6 +59,14 @@
     {
       "id": "5",
       "name": "lego"
+    },
+    {
+      "id": "4f5c",
+      "name": "not lego"
+    },
+    {
+      "id": "20de",
+      "name": "asds"
     }
   ]
 }
